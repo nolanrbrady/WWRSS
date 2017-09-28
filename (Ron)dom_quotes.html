@@ -1,0 +1,127 @@
+<head>
+    <title>
+        WWRSS
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet">
+    <script src="https://use.fontawesome.com/5399771ba9.js"></script>
+</head>
+<style>
+    .container{
+        width: 500px;
+        margin: 0 auto;
+        float: none;
+        margin-top: 12%;
+        border-radius: 10px;
+        background: rgba(0,0,0,.6);
+    }
+    body{
+        background: linear-gradient(to bottom right, #159CB0, #0919C1);
+    }
+    h1{
+        text-align: center;
+        font-family: 'Playfair display';
+        color: #eee;
+    }
+    h3{
+        text-align: center;
+        justify-content: center;
+        height: auto;
+        width: 80%;
+        color: #eee;
+        margin: 0 auto;
+        float: none;
+        margin-top: 30px;
+    }
+    p{
+        text-align: center;
+        font-family: 'Playfair Display';
+        color: #eee;
+    }
+    .button{
+        width: 250px;
+        display: flex;
+        justify-content: center;
+        padding: 10px 30px 10px 30px;
+        color: white;
+        border: 1px solid white;
+        background-color: #3AA9AC;
+        border-radius: 10px;
+        font-family: 'raleway';
+        font-size: 30px;
+        margin: 0 auto;
+        float: none; 
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .button:hover{
+        background-color: transparent;
+        color: rgb(58,169,172);
+        border: 2px solid rgb(58,169,172);
+        font-weight: 700;
+    }
+    .button p{
+        text-align: center;
+    }
+    span{
+        margin: 0 auto;
+        float: none;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .icon{
+       color: #3AA9AC;
+       text-align: center;
+        margin-top: -15px;
+    }
+    .title{
+        font-size: 20px;
+        font-family: 'raleway';
+    }
+    .btn{
+        border: 1px solid transparent;
+    }
+    #facebook:hover{
+        color: rgba(58,169,172,.7);
+    }
+    #twitter:hover{
+        color: rgba(58,169,172,.7);
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>W<span class="title">hat</span> W<span class="title">ould</span> R<span class="title">on</span> S<span class="title">wanson</span> S<span class="title">ay</span>...</h1>
+        <hr style="width: 50%;">
+        <h3 id="id">Waiting for API Call...</h3>
+        <div class="btn">       
+            <p onclick="newQuote()" class="button">Well??</p>
+        </div> 
+        <p id="error"></p>
+        <div class="icon">
+        <i id="twitter" class="fa fa-twitter-square fa-4x" aria-hidden="true"></i>
+        <i id="facebook" class="fa fa-facebook-square fa-4x" aria-hidden="true"></i>
+    </div>
+    </div>
+    
+    
+
+</body>
+<script>
+var quote;
+var button = document.getElementById('btn'); 
+    
+function newQuote(){
+ fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes/1")
+    .then(function(request){
+        return request.json();
+    })
+    .then(function(data){
+        quote = data;
+        document.getElementById('id').innerHTML= quote;
+        console.log(data);
+    }).catch(function(error){
+        var signal = "There was an error " + error;
+        console.log("There was an error " + error);
+     document.getElementById('error').innerHTML = signal; 
+    });   
+}   
+</script>
